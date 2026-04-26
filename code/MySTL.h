@@ -3,5 +3,6 @@
 
 #include "MyStack.h"
 #include "MyQueue.h"
-
+#include "LinkedList.h"
+#include "Vector.h"
 #endif
