@@ -1,5 +1,7 @@
 #include <iostream>
 #include "MySTL.h"
+#include "HashMap.h"
+#include "BinarySearchTree.h"
 using namespace std;
  
 int main()
@@ -55,6 +57,43 @@ int main()
     cout << L.back() << endl;
     L.pop_front();
     cout << L.size() << endl;
+
+    cout << "HashMap\n\n";
+
+    HashMap map;
+    map.insert("Ayesha", 25);
+    map.insert("Wania",  30);
+    map.insert("Hadia",  22);
+    map.display();
+
+    cout << "Get Ayesha: " << map.get("Ayesha") << "\n";
+    cout << "Get Zara:   " << map.get("Zara")   << " (not found)\n\n";
+
+    map.insert("Wania", 99);
+    cout << "Wania updated: " << map.get("Wania") << "\n\n";
+
+    map.remove("Hadia");
+    map.remove("Zara");
+    map.display();
+
+    cout << "Binary Search Tree\n\n";
+
+    BinarySearchTree bst;
+    for (int val : {50, 30, 70, 20, 40, 60, 80})
+        bst.insert(val);
+
+    cout << "\n";
+    bst.printInOrder();
+    bst.printPreOrder();
+    bst.printPostOrder();
+
+    cout << "\nSearch 40: " << (bst.search(40) ? "Found" : "Not found") << "\n";
+    cout << "Search 99: " << (bst.search(99) ? "Found" : "Not found") << "\n\n";
+
+    bst.remove(20);
+    bst.remove(30);
+    bst.remove(50);
+    bst.printInOrder();
  
     return 0;
 }
