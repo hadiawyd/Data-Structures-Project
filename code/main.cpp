@@ -1,7 +1,7 @@
 #include <iostream>
 #include "MySTL.h"
 #include "HashMap.h"
-#include "BinarySearchTree.h"
+#include "BST.h"
 using namespace std;
  
 int main()
