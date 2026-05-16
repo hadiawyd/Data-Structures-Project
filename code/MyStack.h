@@ -8,11 +8,15 @@ template <typename T>
 class MyStack
 {
 private:
-    Node<T>* topNode;
-    int count;
+    Node<T>* topNode;   // Pointer to the top of the stack
+    int count;          // Tracks the number of elements in the stack
 
+    // Helper: copies all elements from 'other' into this stack,
+    // preserving the original top-to-bottom order
     void copyFrom(const MyStack& other)
     {
+        // Traverse 'other' and build a reversed linked list
+        // so that when we push, the original order is restored
         Node<T>* temp = other.topNode;
         Node<T>* reversed = nullptr;
 
@@ -24,6 +28,8 @@ private:
             temp = temp->next;
         }
 
+        // Push nodes from the reversed list so they end up
+        // in the same order as the original stack
         while (reversed != nullptr)
         {
             push(reversed->data);
@@ -34,18 +40,21 @@ private:
     }
 
 public:
+    // Default constructor: initializes an empty stack
     MyStack()
     {
         topNode = nullptr;
         count = 0;
     }
 
+    // Destructor: pops all elements to free allocated memory
     ~MyStack()
     {
         while (!empty())
             pop();
     }
 
+    // Copy constructor: creates a deep copy of 'other'
     MyStack(const MyStack& other)
     {
         topNode = nullptr;
@@ -53,6 +62,7 @@ public:
         copyFrom(other);
     }
 
+    // Assignment operator: clears current stack, then deep copies 'other'
     MyStack& operator=(const MyStack& other)
     {
         if (this != &other)
@@ -64,6 +74,7 @@ public:
         return *this;
     }
 
+    // Pushes a new value onto the top of the stack
     void push(T value)
     {
         Node<T>* newNode = new Node<T>(value);
@@ -72,6 +83,7 @@ public:
         count++;
     }
 
+    // Removes the top element; throws if the stack is empty
     void pop()
     {
         if (empty())
@@ -83,6 +95,7 @@ public:
         count--;
     }
 
+    // Returns the top element without removing it; throws if empty
     T top() const
     {
         if (empty())
@@ -91,11 +104,13 @@ public:
         return topNode->data;
     }
 
+    // Returns true if the stack has no elements
     bool empty() const
     {
         return topNode == nullptr;
     }
 
+    // Returns the number of elements currently in the stack
     int size() const
     {
         return count;
