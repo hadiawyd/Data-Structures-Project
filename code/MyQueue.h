@@ -8,10 +8,12 @@ template <typename T>
 class MyQueue
 {
 private:
-    Node<T>* frontNode;
-    Node<T>* rearNode;
-    int count;
+    Node<T>* frontNode;  // Pointer to the front (dequeue side) of the queue
+    Node<T>* rearNode;   // Pointer to the rear (enqueue side) of the queue
+    int count;           // Tracks the number of elements in the queue
 
+    // Helper: copies all elements from 'other' into this queue,
+    // preserving front-to-rear order
     void copyFrom(const MyQueue& other)
     {
         Node<T>* temp = other.frontNode;
@@ -23,6 +25,7 @@ private:
     }
 
 public:
+    // Default constructor: initializes an empty queue
     MyQueue()
     {
         frontNode = nullptr;
@@ -30,12 +33,14 @@ public:
         count = 0;
     }
 
+    // Destructor: dequeues all elements to free allocated memory
     ~MyQueue()
     {
         while (!empty())
             dequeue();
     }
 
+    // Copy constructor: creates a deep copy of 'other'
     MyQueue(const MyQueue& other)
     {
         frontNode = rearNode = nullptr;
@@ -43,6 +48,7 @@ public:
         copyFrom(other);
     }
 
+    // Assignment operator: clears current queue, then deep copies 'other'
     MyQueue& operator=(const MyQueue& other)
     {
         if (this != &other)
@@ -54,10 +60,12 @@ public:
         return *this;
     }
 
+    // Adds a new value to the rear of the queue
     void enqueue(T value)
     {
         Node<T>* newNode = new Node<T>(value);
 
+        // If queue is empty, new node is both front and rear
         if (rearNode == nullptr)
         {
             frontNode = rearNode = newNode;
@@ -71,6 +79,7 @@ public:
         count++;
     }
 
+    // Removes the front element; throws if the queue is empty
     void dequeue()
     {
         if (empty())
@@ -79,6 +88,7 @@ public:
         Node<T>* temp = frontNode;
         frontNode = frontNode->next;
 
+        // If the queue is now empty, reset rearNode as well
         if (frontNode == nullptr)
             rearNode = nullptr;
 
@@ -86,6 +96,7 @@ public:
         count--;
     }
 
+    // Returns the front element without removing it; throws if empty
     T front() const
     {
         if (empty())
@@ -94,6 +105,7 @@ public:
         return frontNode->data;
     }
 
+    // Returns the rear element without removing it; throws if empty
     T rear() const
     {
         if (empty())
@@ -102,11 +114,13 @@ public:
         return rearNode->data;
     }
 
+    // Returns true if the queue has no elements
     bool empty() const
     {
         return frontNode == nullptr;
     }
 
+    // Returns the number of elements currently in the queue
     int size() const
     {
         return count;
