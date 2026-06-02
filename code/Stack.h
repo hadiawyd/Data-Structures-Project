@@ -5,7 +5,7 @@
 #include <stdexcept>
 
 template <typename T>
-class MyStack
+class Stack
 {
 private:
     Node<T>* topNode;   // Pointer to the top of the stack
@@ -13,7 +13,7 @@ private:
 
     // Helper: copies all elements from 'other' into this stack,
     // preserving the original top-to-bottom order
-    void copyFrom(const MyStack& other)
+    void copyFrom(const Stack& other)
     {
         // Traverse 'other' and build a reversed linked list
         // so that when we push, the original order is restored
@@ -41,21 +41,21 @@ private:
 
 public:
     // Default constructor: initializes an empty stack
-    MyStack()
+    Stack()
     {
         topNode = nullptr;
         count = 0;
     }
 
     // Destructor: pops all elements to free allocated memory
-    ~MyStack()
+    ~Stack()
     {
         while (!empty())
             pop();
     }
 
     // Copy constructor: creates a deep copy of 'other'
-    MyStack(const MyStack& other)
+    Stack(const Stack& other)
     {
         topNode = nullptr;
         count = 0;
@@ -63,7 +63,7 @@ public:
     }
 
     // Assignment operator: clears current stack, then deep copies 'other'
-    MyStack& operator=(const MyStack& other)
+    Stack& operator=(const Stack& other)
     {
         if (this != &other)
         {
