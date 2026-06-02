@@ -1,6 +1,6 @@
 #pragma once
-#ifndef MYLINKEDLIST_H
-#define MYLINKEDLIST_H
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
 //different from a vector, linked list donot store elements in a continous memory
 #include "Node.h"
 #include <stdexcept>
