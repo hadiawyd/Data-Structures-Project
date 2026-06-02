@@ -12,32 +12,106 @@ int main()
 {
     cout << "================ STACK ================\n";
 
-    MyStack<int> s;
-    s.push(1);
-    s.push(2);
-    s.push(3);
-
-    cout << "Top element: " << s.top() << endl;
-
+     MyStack<int> s;
+ 
+    
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    cout << "After push(10, 20, 30):\n";
+    cout << "  Top element : " << s.top() << endl;
+ 
+    
+    cout << "  Size : " << s.size() << endl;
+ 
+    
+    cout << "  Empty? : " << (s.empty() ? "Yes" : "No") << endl;
+ 
+    
     s.pop();
-
-    cout << "After pop(), top element: " << s.top() << endl;
-
-
+    cout << "After pop():\n";
+    cout << "  Top element : " << s.top() << endl;
+    cout << "  Size: " << s.size() << endl;
+ 
+    MyStack<int> s2(s);
+    cout << "Copy of stack - Top: " << s2.top()
+         << ", Size: " << s2.size() << endl;
+ 
+    MyStack<int> s3;
+    s3 = s;
+    cout << "Assigned stack - Top: " << s3.top()
+         << ", Size: " << s3.size() << endl;
+ 
+    while (!s.empty())
+        s.pop();
+    cout << "After popping all - Empty? : " << (s.empty() ? "Yes" : "No") << endl;
+ 
+    try {
+        s.pop();
+    } catch (const std::out_of_range& e) 
+        {
+        cout << "Exception caught (pop on empty): " << e.what() << endl;
+    }
+ 
+    try {
+        s.top();
+    } catch (const std::out_of_range& e) {
+        cout << "Exception caught (top on empty): " << e.what() << endl;
+    }
+ 
+ 
     cout << "\n================ QUEUE ================\n";
-
+ 
     MyQueue<int> q;
+ 
     q.enqueue(11);
     q.enqueue(12);
     q.enqueue(13);
-
-    cout << "Front element: " << q.front() << endl;
-
+    cout << "After enqueue(11, 12, 13):\n";
+    cout << "  Front element : " << q.front() << endl;
+    cout << "  Rear element  : " << q.rear()  << endl;
+ 
+    cout << "  Size          : " << q.size() << endl;
+ 
+    cout << "  Empty?        : " << (q.empty() ? "Yes" : "No") << endl;
+ 
     q.dequeue();
-
-    cout << "After dequeue(), front element: "
-        << q.front() << endl;
-
+    cout << "After dequeue():\n";
+    cout << "  Front element : " << q.front() << endl;
+    cout << "  Size          : " << q.size() << endl;
+ 
+    MyQueue<int> q2(q);
+    cout << "Copy of queue - Front: " << q2.front()
+         << ", Size: " << q2.size() << endl;
+ 
+    MyQueue<int> q3;
+    q3 = q;
+    cout << "Assigned queue - Front: " << q3.front()
+         << ", Size: " << q3.size() << endl;
+ 
+    while (!q.empty())
+        q.dequeue();
+    cout << "After dequeuing all - Empty? : " << (q.empty() ? "Yes" : "No") << endl;
+ 
+    try {
+        q.dequeue();
+    } catch (const std::out_of_range& e) {
+        cout << "Exception caught (dequeue on empty): " << e.what() << endl;
+    }
+ 
+    try {
+        q.front();
+    } catch (const std::out_of_range& e) 
+        {
+        cout << "Exception caught (front on empty): " << e.what() << endl;
+    }
+ 
+    try {
+        q.rear();
+    } catch (const std::out_of_range& e) 
+        {
+        cout << "Exception caught (rear on empty): " << e.what() << endl;
+    }
 
     cout << "\n================ VECTOR ================\n";
 
