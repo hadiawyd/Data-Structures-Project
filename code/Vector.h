@@ -12,10 +12,10 @@ private:
     int size_; //number of elements stored in a vector
     int capacity_; //allocated memory slots (some maybe empty or not)
 
-    //increase capacity when needed (amortized growth)
+    //increase capacity when needed
     void grow()
     {
-        int newCap = (capacity_ == 0) ? 1 : capacity_ * 2; //basically increases the capacity by factors of 2, this is used when 
+        int newCap = (capacity_ == 0) ? 1 : capacity_ * 2; // basically increases the capacity by factors of 2, this is used when 
         //vectors become full 
         reallocate(newCap); //create a new array with new capacity
     }
@@ -31,7 +31,7 @@ private:
         capacity_ = newCap;
     }
 
-    //deep copy helper used by copy ctor and operator=
+    //deep copy helper 
     void copyFrom(const MyVector& other) //copy from is used in copy constructor and assignment operator
     {
         data_ = new T[other.capacity_];
@@ -40,7 +40,56 @@ private:
         for (int i = 0; i < size_; ++i)
             data_[i] = other.data_[i];
     }
+    //merge helper for merge sort
+    void merge(int left, int mid, int right)
+    {
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
 
+        T* L = new T[n1];
+        T* R = new T[n2];
+
+        for (int i = 0; i < n1; ++i)
+            L[i] = data_[left + i];
+
+        for (int j = 0; j < n2; ++j)
+            R[j] = data_[mid + 1 + j];
+
+        int i = 0;
+        int j = 0;
+        int k = left;
+
+        while (i < n1 && j < n2)
+        {
+            if (L[i] <= R[j])
+                data_[k++] = L[i++];
+            else
+                data_[k++] = R[j++];
+        }
+
+        while (i < n1)
+            data_[k++] = L[i++];
+
+        while (j < n2)
+            data_[k++] = R[j++];
+
+        delete[] L;
+        delete[] R;
+    }
+
+    //recursive merge sort
+    void mergeSort(int left, int right)
+    {
+        if (left >= right)
+            return;
+
+        int mid = left + (right - left) / 2;
+
+        mergeSort(left, mid);
+        mergeSort(mid + 1, right);
+
+        merge(left, mid, right);
+    }
 public:
     //default: empty vector
     MyVector()
@@ -79,12 +128,38 @@ public:
         }
         return *this;
     }
+    MyVector(MyVector&& other) noexcept
+        : data_(other.data_),
+        size_(other.size_),
+        capacity_(other.capacity_)
+    {
+        other.data_ = nullptr;
+        other.size_ = 0;
+        other.capacity_ = 0;
+    }
+    MyVector& operator=(MyVector&& other) noexcept
+    {
+        if (this != &other)
+        {
+            delete[] data_;
+
+            data_ = other.data_;
+            size_ = other.size_;
+            capacity_ = other.capacity_;
+
+            other.data_ = nullptr;
+            other.size_ = 0;
+            other.capacity_ = 0;
+        }
+
+        return *this;
+    }
     ~MyVector()
     {
         delete[] data_;
     }
 
-    //unchecked access (no bounds checking),faster
+    //direct access
     T& operator[](int index)
     {
         return data_[index];
@@ -99,7 +174,7 @@ public:
     T& at(int index)
     {
         if (index < 0 || index >= size_)
-            throw std::out_of_range("MyVector::at - index out of range"); //
+            throw std::out_of_range("MyVector::at - index out of range"); 
         return data_[index];
     }
 
@@ -175,7 +250,7 @@ public:
         --size_;
     }
 
-    //insert at index, shift elements right
+    //insert at index, shift elements which is why it is O(n)
     void insert(int index, const T& val)
     {
         if (index < 0 || index > size_)
@@ -187,7 +262,7 @@ public:
         ++size_;
     }
 
-    //erase element at index, shift elements left
+    //erase element at index, shift elements
     void erase(int index)
     {
         if (index < 0 || index >= size_)
@@ -219,18 +294,13 @@ public:
             if (data_[i] == val) return i;
         return -1;
     }
-
-    //simple bubble sort
+//merge sort O(n log n)
     void sort()
     {
-        for (int i = 0; i < size_ - 1; ++i)
-            for (int j = 0; j < size_ - i - 1; ++j)
-                if (data_[j] > data_[j + 1])
-                {
-                    T tmp = data_[j];
-                    data_[j] = data_[j + 1];
-                    data_[j + 1] = tmp;
-                }
+        if (size_ <= 1)
+            return;
+
+        mergeSort(0, size_ - 1);
     }
 
     //iterator-like access (raw pointers)
