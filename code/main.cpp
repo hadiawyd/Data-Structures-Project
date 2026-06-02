@@ -249,11 +249,11 @@ int main()
     cout << "\nTIME COMPLEXITY COMPARISON";
     cout << "\n========================================\n";
     cout << "\nSTACK";
-    cout << "\nCustom Stack      : Push O(1), Pop O(1)";
-    cout << "\nSTL Stack         : Push O(1), Pop O(1)\n";
+    cout << "\nCustom Stack      : Push O(1), Pop O(1), Size O(1), Empty O(1), CopyCtor O(n), Assign O(n)";
+    cout << "\nSTL Stack         : Push O(1), Pop O(1), Size O(1), Empty O(1), CopyCtor O(n), Assign O(n)\n";
     cout << "\nQUEUE";
-    cout << "\nCustom Queue      : Enqueue O(1), Dequeue O(1)";
-    cout << "\nSTL Queue         : Push O(1), Pop O(1)\n";
+    cout << "\nCustom Queue      : Enqueue O(1), Dequeue O(1), Size O(1), Empty O(1), CopyCtor O(n), Assign O(n)";
+    cout << "\nSTL Queue         : Push O(1), Pop O(1), Size O(1), Empty O(1), CopyCtor O(n), Assign O(n)\n";
     cout << "\nVECTOR";
     cout << "\nCustom Vector     : Push_Back O(1)*, Insert O(n), Erase O(n)";
     cout << "\nSTL Vector        : Push_Back O(1)*, Insert O(n), Erase O(n)\n";
