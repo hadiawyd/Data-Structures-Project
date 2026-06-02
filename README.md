@@ -30,7 +30,7 @@ A custom dynamic array similar to C++ STL vector.
 
 - Similar behavior to `std::vector`
 - Same complexity for most operations
-- Uses Merge Sort instead of Bubble Sort
+- Uses Merge Sort 
 # LinkedList.h
 
 A custom doubly linked list similar to C++ STL list.
