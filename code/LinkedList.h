@@ -2,7 +2,6 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 //different from a vector, linked list donot store elements in a continous memory
-#include "Node.h"
 #include <stdexcept>
 #include <initializer_list>
 #include <utility>   // std::move, std::swap
