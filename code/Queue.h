@@ -1,5 +1,5 @@
-#ifndef MYQUEUE_H
-#define MYQUEUE_H
+#ifndef QUEUE_H
+#define QUEUE_H
 
 #include "Node.h"
 #include <stdexcept>
