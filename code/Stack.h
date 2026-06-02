@@ -1,5 +1,5 @@
-#ifndef MYSTACK_H
-#define MYSTACK_H
+#ifndef STACK_H
+#define STACK_H
 
 #include "Node.h"
 #include <stdexcept>
