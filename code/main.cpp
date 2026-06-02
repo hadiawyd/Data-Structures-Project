@@ -171,5 +171,29 @@ int main()
     cout << "\nAfter deletions:\n";
     bst.printInOrder();
 
+    cout << "\n\n========================================";
+    cout << "\nTIME COMPLEXITY COMPARISON";
+    cout << "\n========================================\n";
+    cout << "\nSTACK";
+    cout << "\nCustom Stack      : Push O(1), Pop O(1)";
+    cout << "\nSTL Stack         : Push O(1), Pop O(1)\n";
+    cout << "\nQUEUE";
+    cout << "\nCustom Queue      : Enqueue O(1), Dequeue O(1)";
+    cout << "\nSTL Queue         : Push O(1), Pop O(1)\n";
+    cout << "\nVECTOR";
+    cout << "\nCustom Vector     : Push_Back O(1)*, Insert O(n), Erase O(n)";
+    cout << "\nSTL Vector        : Push_Back O(1)*, Insert O(n), Erase O(n)\n";
+    cout << "\nLINKED LIST";
+    cout << "\nCustom LinkedList : Push_Front O(1), Push_Back O(1), Erase O(n)";
+    cout << "\nSTL List          : Push_Front O(1), Push_Back O(1), Erase O(n)\n";
+    cout << "\nHASH MAP";
+    cout << "\nCustom HashMap    : Insert O(1), Search O(1), Delete O(1)";
+    cout << "\nunordered_map     : Insert O(1), Search O(1), Delete O(1)\n";
+    cout << "\nBINARY SEARCH TREE";
+    cout << "\nCustom BST        : Insert/Search/Delete O(log n) average";
+    cout << "\nstd::set          : Insert/Search/Delete O(log n)\n";
+    cout << "\n* O(1) amortized";
+    cout << "\n========================================\n";
+
     return 0;
 }
