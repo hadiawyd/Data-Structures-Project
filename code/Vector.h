@@ -1,5 +1,5 @@
-#ifndef MYVECTOR_H
-#define MYVECTOR_H
+#ifndef VECTOR_H
+#define VECTOR_H
 
 #include <stdexcept>
 #include <initializer_list> //to write Or initialize lists for vectors
