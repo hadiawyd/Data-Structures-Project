@@ -1,5 +1,5 @@
 # Data-Structures-Project
-# MyStack.h
+# Stack.h
 
 A custom stack implemented using a singly linked list, following LIFO (Last In, First Out) order.
 
@@ -29,7 +29,7 @@ A custom stack implemented using a singly linked list, following LIFO (Last In, 
 - STL stack uses `std::deque` internally by default
 - Custom version uses a singly linked list with explicit node management
 
-# MyQueue.h
+# Queue.h
 
 A custom queue implemented using a singly linked list with front and rear pointers, following FIFO (First In, First Out) order.
 
@@ -125,3 +125,89 @@ A custom doubly linked list similar to C++ STL list.
 - Fast insertions and deletions
 - Slower random access than vectors
 - Uses Merge Sort for efficient sorting
+  # Binary Search Tree (BST)
+
+## Overview
+
+This project implements a Binary Search Tree (BST) from scratch in C++. A BST stores data in sorted order, allowing efficient insertion, searching, and deletion of elements.
+
+## Features
+
+* Insert nodes
+* Search for values
+* Delete nodes
+* In-order traversal
+* Pre-order traversal
+* Post-order traversal
+* Automatic memory cleanup using a destructor
+
+## Time Complexities
+
+| Operation | Complexity       |
+| --------- | ---------------- |
+| Insert    | O(log n) average |
+| Search    | O(log n) average |
+| Delete    | O(log n) average |
+| Traversal | O(n)             |
+
+Worst-case complexity becomes O(n) when the tree becomes skewed.
+
+## Design Decisions
+
+* Recursive helper functions are used for insertion, searching, and deletion.
+* Duplicate values are ignored.
+* Deletion handles all three BST cases:
+
+  * Leaf node
+  * One child
+  * Two children (using inorder successor)
+
+## Learning Outcomes
+
+* Recursive tree operations
+* Dynamic memory management
+* Tree traversals
+* Binary Search Tree deletion logic
+# Hash Map
+
+## Overview
+
+This project implements a Hash Map from scratch in C++. The Hash Map stores key-value pairs and provides fast average-case insertion, searching, and deletion using hashing.
+
+## Features
+
+* Insert key-value pairs
+* Update existing values
+* Search by key
+* Delete key-value pairs
+* Display bucket contents
+* Automatic memory cleanup using a destructor
+
+## Collision Handling
+
+Collisions are handled using Separate Chaining, where each bucket stores a linked list of nodes.
+
+## Time Complexities
+
+| Operation | Average Case |
+| --------- | ------------ |
+| Insert    | O(1)         |
+| Search    | O(1)         |
+| Delete    | O(1)         |
+
+Worst-case complexity is O(n) when many keys collide into the same bucket.
+
+## Design Decisions
+
+* Uses a simple ASCII-sum hash function.
+* Fixed table size of 10 buckets.
+* Inserts new nodes at the front of the chain for O(1) insertion.
+
+## Learning Outcomes
+
+* Hash functions
+* Collision resolution
+* Separate chaining
+* Dynamic memory management
+* Key-value data structures
+
