@@ -112,81 +112,243 @@ int main()
         {
         cout << "Exception caught (rear on empty): " << e.what() << endl;
     }
+cout << "\n================ VECTOR ================\n";
 
-    cout << "\n================ VECTOR ================\n";
+MyVector<int> v;
 
-    MyVector<int> v;
+v.push_back(10);
+v.push_back(20);
+v.push_back(30);
 
-    v.push_back(10);
-    v.push_back(20);
-    v.push_back(30);
+cout << "After push_back(): ";
+for (int i = 0; i < v.size(); i++)
+    cout << v[i] << " ";
+cout << endl;
 
-    cout << "After push_back(): ";
-    for (int i = 0; i < v.size(); i++)
-        cout << v[i] << " ";
-    cout << endl;
+v.insert(1, 15);
 
-    v.insert(1, 15);
+cout << "After insert(1, 15): ";
+for (int i = 0; i < v.size(); i++)
+    cout << v[i] << " ";
+cout << endl;
+cout << "\nFind 20: " << v.find(20) << endl;
+cout << "Find 999: " << v.find(999) << endl;
+cout << endl;
+v.resize(8, 99);
 
-    cout << "After insert(1, 15): ";
-    for (int i = 0; i < v.size(); i++)
-        cout << v[i] << " ";
-    cout << endl;
+cout << "After resize(8,99): ";
+for (int x : v)
+    cout << x << " ";
+cout << endl;
+cout << "Capacity before shrink: "
+    << v.capacity() << endl;
 
-    v.erase(1);
+v.shrink_to_fit();
 
-    cout << "After erase(1): ";
-    for (int i = 0; i < v.size(); i++)
-        cout << v[i] << " ";
-    cout << endl;
+cout << "Capacity after shrink: "
+    << v.capacity() << endl;
+cout << endl;
 
-    cout << "Front element: " << v.front() << endl;
-    cout << "Back element : " << v.back() << endl;
+v.erase(1);
 
-    v.pop_back();
+cout << "After erase(1): ";
+for (int i = 0; i < v.size(); i++)
+    cout << v[i] << " ";
+cout << endl;
+cout << endl;
+cout << "Is vector empty? "
+    << (v.empty() ? "Yes" : "No")
+    << endl;
 
-    cout << "After pop_back(): ";
-    for (int i = 0; i < v.size(); i++)
-        cout << v[i] << " ";
-    cout << endl;
+cout << "Front element: " << v.front() << endl;
+cout << "Back element : " << v.back() << endl;
 
-    cout << "Current size: " << v.size() << endl;
+v.pop_back();
+
+cout << "After pop_back(): ";
+for (int i = 0; i < v.size(); i++)
+    cout << v[i] << " ";
+cout << endl;
+
+cout << "Current size: " << v.size() << endl;
+cout << endl;
+
+cout << "\nCapacity before reserve: "
+    << v.capacity() << endl;
+
+v.reserve(50);
+
+cout << "Capacity after reserve(50): "
+    << v.capacity() << endl;
+
+cout << "Capacity before shrink: "
+    << v.capacity() << endl;
+
+v.shrink_to_fit();
+
+cout << "Capacity after shrink: "
+    << v.capacity() << endl;
+MyVector<int> sortVec;
+
+sortVec.push_back(50);
+sortVec.push_back(10);
+sortVec.push_back(40);
+sortVec.push_back(20);
+sortVec.push_back(30);
+
+cout << "\nBefore sort: ";
+
+for (int x : sortVec)
+    cout << x << " ";
+
+sortVec.sort();
+
+cout << "\nAfter sort: ";
+
+for (int x : sortVec)
+    cout << x << " ";
+
+cout << endl;
+MyVector<int> copyVec(sortVec);
+
+cout << "\nCopied vector: ";
+
+for (int x : copyVec)
+    cout << x << " ";
+
+cout << endl;
+cout << "\nElement at index 2: ";
+if (v.size() > 2)
+    cout << v.at(2);
+else
+    cout << "(index 2 out of range, size=" << v.size() << ")";
+cout << endl;
 
 
-    cout << "\n============= LINKED LIST =============\n";
+cout << "\n============= LINKED LIST =============\n";
 
-    MyLinkedList<int> L;
+MyLinkedList<int> L;
 
-    L.push_back(100);
-    L.push_back(200);
-    L.push_back(300);
-    L.push_front(50);
+L.push_back(100);
+L.push_back(200);
+L.push_back(300);
+L.push_front(50);
 
-    cout << "After insertions: ";
-    for (int x : L)
-        cout << x << " ";
-    cout << endl;
+cout << "After insertions: ";
+for (int x : L)
+    cout << x << " ";
+cout << endl;
 
-    L.erase(1);
+L.insert(1, 150);
+cout << "\nAfter insert(1,150): ";
+for (int x : L)
+    cout << x << " ";
+cout << endl;
 
-    cout << "After erase(1): ";
-    for (int x : L)
-        cout << x << " ";
-    cout << endl;
+L.reverse();
 
-    cout << "Front element: " << L.front() << endl;
-    cout << "Back element : " << L.back() << endl;
+cout << "After reverse(): ";
+for (int x : L)
+    cout << x << " ";
+cout << endl;
 
-    L.pop_front();
+L.erase(1);
 
-    cout << "After pop_front(): ";
-    for (int x : L)
-        cout << x << " ";
-    cout << endl;
+cout << "After erase(1): ";
+for (int x : L)
+    cout << x << " ";
+cout << endl;
+  
+cout << "\nFind 99: "
+    << L.find(99) << endl;
+cout << "Contains 300: "
+    << (L.contains(300) ? "Yes" : "No")
+    << endl;
+L.remove(150);
 
-    cout << "Current size: " << L.size() << endl;
+cout << "\nAfter remove(150): ";
+
+for (int x : L)
+    cout << x << " ";
+
+cout << endl;
+cout << endl;
 
 
+cout << "Front element: " << L.front() << endl;
+cout << "Back element : " << L.back() << endl;
+
+L.pop_front();
+
+cout << "After pop_front(): ";
+for (int x : L)
+    cout << x << " ";
+cout << endl;
+
+cout << "Current size: " << L.size() << endl;
+MyLinkedList<int> list2;
+
+list2.push_back(50);
+list2.push_back(10);
+list2.push_back(40);
+list2.push_back(20);
+list2.push_back(30);
+
+
+cout << "\nBefore sort: ";
+
+for (int x : list2)
+    cout << x << " ";
+
+list2.sort();
+
+cout << "\nAfter sort: ";
+
+for (int x : list2)
+    cout << x << " ";
+
+cout << endl;
+cout << endl;
+cout << "\nTesting Iterator Insert\n";
+
+auto it = list2.begin();
+++it;
+
+cout << "Inserting 999 before value "
+    << *it << endl;
+
+list2.insert(it, 999);
+
+cout << "List after insertion: ";
+for (int x : list2)
+    cout << x << " ";
+cout << endl;
+cout << endl;
+
+cout << "\nTesting Iterator Erase\n";
+
+auto eraseIt = list2.begin();
+++eraseIt;
+
+cout << "Erasing value "
+    << *eraseIt << endl;
+
+list2.erase(eraseIt);
+
+cout << "List after erase: ";
+for (int x : list2)
+    cout << x << " ";
+cout << endl;
+
+   
+
+L.clear();
+
+cout << "After clear(), size = "
+    << L.size()
+    << endl;
+
+    
     cout << "\n=============== HASH MAP ===============\n\n";
 
     HashMap map;
