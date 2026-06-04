@@ -1,4 +1,4 @@
-# Data-Structures-Project
+# Implementing Core STL Structures:
 # Stack.h
 
 A custom stack implemented using a singly linked list, following LIFO (Last In, First Out) order.
